@@ -13,7 +13,7 @@ pipeline {
 
         stage('Build') {
             steps {
-sh "mvn -version"            }
+sh "mvn clean install"            }
         }
 
         // Add more stages as needed
