@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // Checkout the code from the specified branch
+                    checkout([$class: 'GitSCM', branches: [[name: 'your-branch-name']], userRemoteConfigs: [[url: 'https://github.com/yourusername/your-repo.git']]])
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Add your build steps here
+            }
+        }
+
+        // Add more stages as needed
+    }
+}
