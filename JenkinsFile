@@ -13,7 +13,7 @@ pipeline {
 
         stage('Build') {
             steps {
-sh "mvn clean"            }
+sh "mvn clean install -Dmaven.test.skip=true"            }
         }
 
         // Add more stages as needed
