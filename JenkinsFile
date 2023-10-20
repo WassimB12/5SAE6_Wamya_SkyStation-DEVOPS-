@@ -18,8 +18,7 @@ sh "mvn clean -Dmaven.test.skip=true"            }
  stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName:'SonarQ') {
-                    sh './chmod +x mvnw
- clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar' // Use 'gradle sonarqube' for Gradle projects
+                    sh 'mvn sonar:sonar' //  ./chmod +x mvnw  clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar
                 }
             }
         }
