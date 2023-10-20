@@ -13,7 +13,14 @@ pipeline {
 
         stage('Build') {
             steps {
-sh "mvn clean install -Dmaven.test.skip=true"            }
+sh "mvn clean -Dmaven.test.skip=true"            }
+        }
+ stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv(installationName:'SonarQ') {
+                    sh 'mvn sonar:sonar' // Use 'gradle sonarqube' for Gradle projects
+                }
+            }
         }
 
         // Add more stages as needed
