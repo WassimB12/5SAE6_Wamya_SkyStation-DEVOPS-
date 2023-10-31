@@ -4,21 +4,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-sh "mvn clean install -Dmaven.test.skip=true"            }
-        }
- stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv(installationName:'sonarqube') {
-                    sh 'mvn sonar:sonar' //  ./chmod +x mvnw  clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar
-                }
-            }
-        }
-stage('Run Unit Tests with Mockito') {
-            steps {
-                sh 'mvn test' // Exécutez les tests unitaires avec Mockito en utilisant Maven
-                // Utilisez 'gradle test' pour les projets Gradle
+                sh "mvn clean install -Dmaven.test.skip=true"
             }
         }
 
-        // Add more stages as needed
-    }}
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    // Assuming SonarQube is running on http://localhost:9000
+                    withSonarQubeEnv(installationName: 'sonarqube') {
+                        sh 'mvn sonar:sonar'
+                    }
+                }
+            }
+        }
+
+        stage('Run Unit Tests with Mockito') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+    }
+}
