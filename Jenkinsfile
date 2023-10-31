@@ -8,7 +8,7 @@ sh "mvn clean install -Dmaven.test.skip=true"            }
         }
  stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv(installationName:'SonarQ') {
+                withSonarQubeEnv(installationName:'sonarqube') {
                     sh 'mvn sonar:sonar' //  ./chmod +x mvnw  clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar
                 }
             }
