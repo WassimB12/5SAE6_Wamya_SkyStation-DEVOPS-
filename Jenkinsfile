@@ -23,11 +23,11 @@ pipeline{
 
 
 
-     /*   stage('Artifact Construction') {
+        stage('Artifact Construction') {
             steps{
                 	sh "mvn -B -DskipTests package "
             }
-        }*/
+        }
 
 
 /*
