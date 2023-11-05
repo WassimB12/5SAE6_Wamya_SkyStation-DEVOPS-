@@ -14,10 +14,10 @@ pipeline {
       	sh 'pwd'
       }
     }
-        stage('tesettes') {
+        stage('mvn version') {
     	agent any
       steps {
-      	sh 'ls -l'
+      	sh 'mvn -v'
       }
     }
         
