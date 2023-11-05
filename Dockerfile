@@ -2,10 +2,9 @@ FROM maven:3.6.3-jdk-8
 
 WORKDIR /opt/app/
 
-COPY . .
+COPY target/gestion-station-ski-1.0.jar .
 
-# cp target/spring-boot-web.jar /opt/app/app.jar
-COPY ./target/gestion-station-ski-1.0.jar /opt/app/app.jar
+COPY gestion-station-ski-1.0.jar app.jar
 
 EXPOSE 8089
 
