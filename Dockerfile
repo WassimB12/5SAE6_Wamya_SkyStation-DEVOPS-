@@ -1,12 +1,4 @@
-FROM maven:3.6.3-jdk-8
-
-WORKDIR /opt/app/
-
-ADD target/gestion-station-ski-1.0.jar .
-
-COPY gestion-station-ski-1.0.jar app.jar
-
+FROM openjdk:8
 EXPOSE 8089
-
-# java -jar /opt/app/app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+ADD target/gestion-station-ski-1.0.jar skistationDocker.jar
+ENTRYPOINT ["java", "-jar", "skistationDocker.jar"]
