@@ -4,7 +4,7 @@ WORKDIR /opt/app/
 
 COPY . .
 
-ADD /opt/app/target/gestion-station-ski-1.0.jar /opt/app/app.jar
+COPY /opt/app/target/gestion-station-ski-1.0.jar /opt/app/app.jar
 
 EXPOSE 8089
 
