@@ -8,6 +8,19 @@ pipeline {
             }
         }
 
+    stage('test') {
+    	agent any
+      steps {
+      	sh 'pwd'
+      }
+    }
+        stage('test') {
+    	agent any
+      steps {
+      	sh 'ls -l'
+      }
+    }
+        
     stage('Docker Build') {
     	agent any
       steps {
