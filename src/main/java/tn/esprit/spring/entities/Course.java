@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @Entity
-
+@Builder
 public class Course implements Serializable {
 
 	@Id
