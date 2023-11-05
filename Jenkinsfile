@@ -4,22 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "mvn clean install -DskipTests"
+                sh "mvn clean package -DskipTests"
             }
         }
-
-    stage('test') {
-    	agent any
-      steps {
-      	sh 'pwd'
-      }
-    }
-        stage('mvn version') {
-    	agent any
-      steps {
-      	sh 'mvn -v'
-      }
-    }
         
     stage('Docker Build') {
     	agent any
