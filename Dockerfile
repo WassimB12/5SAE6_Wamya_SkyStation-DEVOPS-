@@ -5,7 +5,7 @@ WORKDIR /opt/app/
 COPY . .
 
 # cp target/spring-boot-web.jar /opt/app/app.jar
-COPY target/gestion-station-ski-1.0.jar /opt/app/app.jar
+COPY ./target/gestion-station-ski-1.0.jar /opt/app/app.jar
 
 EXPOSE 8089
 
