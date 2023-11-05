@@ -2,7 +2,7 @@ FROM maven:3.6.3-jdk-8
 
 WORKDIR /opt/app/
 
-COPY target/gestion-station-ski-1.0.jar .
+COPY /var/lib/jenkins/workspace/devopsPipeline/target/gestion-station-ski-1.0.jar .
 
 COPY gestion-station-ski-1.0.jar app.jar
 
