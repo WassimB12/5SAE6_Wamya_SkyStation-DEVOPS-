@@ -14,7 +14,7 @@ pipeline {
       	sh 'pwd'
       }
     }
-        stage('test') {
+        stage('tesettes') {
     	agent any
       steps {
       	sh 'ls -l'
