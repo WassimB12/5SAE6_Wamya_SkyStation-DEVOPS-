@@ -7,6 +7,13 @@ pipeline {
                 sh "mvn clean package -DskipTests"
             }
         }
+
+
+        stage('Docker cleanup') {
+            steps {
+                sh "docker image prune"
+            }
+        }
         
         stage('Docker Build') { 
             steps { 
