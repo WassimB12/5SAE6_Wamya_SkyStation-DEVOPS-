@@ -60,20 +60,20 @@ pipeline{
 stage('Build Docker Image') {
                       steps {
                           script {
-                            sh 'docker build -t hadhemii/spring-app-gl:second .'
+                            sh 'docker build -t hadhemiii/spring-app-gl:second .'
                           }
                       }
                   }
 
                   stage('login dockerhub') {
                                         steps {
-				sh 'docker login -u hadhemii --password dckr_pat_IWHnvrfUZKUoGFxg8MigwDiRveQ'
+				sh 'docker login -u hadhemiii --password dckr_pat_KIW1WIbDn1ucqhxxzy0FXUAX6gc'
                                             }
 		  }
 
 	                      stage('Push Docker Image') {
                                         steps {
-                                   sh 'docker push hadhemii/spring-app-gl:second'
+                                   sh 'docker push hadhemiii/spring-app-gl:second'
                                             }
 		  }
 
@@ -95,22 +95,7 @@ stage('Build Docker Image') {
 
 	    
         post {
-		/*success{
-		mail bcc: '', body: '''Dear Med Aziz, 
-we are happy to inform you that your pipeline build was successful. 
-Great work ! 
--Jenkins Team-''', cc: '', from: 'mohamedaziz.benhaha@esprit.tn', replyTo: '', subject: 'Build Finished - Success', to: 'mohamedaziz.benhaha@esprit.tn'
-		}
-		
-		failure{
-mail bcc: '', body: '''Dear Med Aziz, 
-we are sorry to inform you that your pipeline build failed. 
-Keep working ! 
--Jenkins Team-''', cc: '', from: 'mohamedaziz.benhaha@esprit.tn', replyTo: '', subject: 'Build Finished - Failure', to: 'mohamedaziz.benhaha@esprit.tn'
-		}*/
-
        always {
-		//emailext attachLog: true, body: '', subject: 'Build finished',from: 'mohamedaziz.benhaha@esprit.tn' , to: 'mohamedaziz.benhaha@esprit.tn'
             cleanWs()
        }
     }
