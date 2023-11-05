@@ -19,7 +19,7 @@ services:
   app:
     depends_on:
       - mysqldb
-    image:  hadhemii/spring-app-gl:second
+    image:  hadhemiii/spring-app-gl:second
     restart: on-failure
     env_file: ./.env
     ports:
