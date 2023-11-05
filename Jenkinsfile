@@ -8,12 +8,13 @@ pipeline {
             }
         }
         
-    stage('Docker Build') {
-    	agent any
-      steps {
-      	sh 'docker build -t msadaayessine_wamya_skystation:latest .'
-      }
-    }
+        stage('Docker Build') { 
+            steps { 
+                script{
+                 app = docker.build("msadaayessine_wamya_skystation")
+                }
+            }
+        }
 
         stage('SonarQube Analysis') {
             steps {
