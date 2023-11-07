@@ -60,7 +60,7 @@ pipeline{
 stage('Build Docker Image') {
                       steps {
                           script {
-                            sh 'docker build -t hadhemiii/spring-app-gl:second .'
+                            sh 'docker build -t hadhemiii/spring-app-gl:hadhemitrabelsi_5sae6-g2 .'
                           }
                       }
                   }
@@ -73,7 +73,7 @@ stage('Build Docker Image') {
 
 	                      stage('Push Docker Image') {
                                         steps {
-                                   sh 'docker push hadhemiii/spring-app-gl:second'
+                                   sh 'docker push hadhemiii/spring-app-gl:hadhemitrabelsi_5sae6-g2'
                                             }
 		  }
 
