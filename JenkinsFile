@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+      /*  stage('Checkout') {
             steps {
                 script {
                     // Checkout the code from the specified branch
                     checkout([$class: 'GitSCM', branches: [[name: 'becheikhWassim_5SAE6_Wamya']], userRemoteConfigs: [[url: 'https://github.com/WassimB12/5SAE6_Wamya_SkyStation']]])
                 }
             }
-        }
+        }*/
 
         stage('Maven clean install') {
             steps {
