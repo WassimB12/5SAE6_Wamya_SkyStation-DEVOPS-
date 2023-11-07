@@ -28,6 +28,14 @@ stage('Run Unit Tests with Mockito') {
                 // Utilisez 'gradle test' pour les projets Gradle
             }
         }
+  stage('Nexus') {
+            steps {
+
+
+  sh 'mvn clean package deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=gestion-station-ski -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=maven-releases -Durl=http://192.168.33.10:8081/repository/maven-releases/ -Dfile=target/gestion-station-ski-1.0.jar'
+
+            }
+        }
 
         // Add more stages as needed
     }}
