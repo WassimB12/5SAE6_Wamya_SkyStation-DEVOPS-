@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Checkout the code from the specified branch
-                    checkout([$class: 'GitSCM', branches: [[name: 'becheikhWassim_5SAE6_Wamya']], userRemoteConfigs: [[url: 'https://github.com/WassimB12/5SAE6_Wamya_SkyStation']]])
+                    checkout([$class: 'GitSCM', branches: [[name: 'rimMabrouki5SAE6']], userRemoteConfigs: [[url: 'https://github.com/WassimB12/5SAE6_Wamya_SkyStation']]])
                 }
             }
         }
