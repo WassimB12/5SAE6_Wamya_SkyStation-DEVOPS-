@@ -3,7 +3,29 @@ pipeline {
 
     stages {
      
+ stage('Build Docker Image') {
+            steps {
+                script {
+                    // Utiliser le binaire Docker dans l'agent Jenkins
+                    def dockerImage = docker.build('skistation:latest', '-f Dockerfile .')
+                }
+            }
+        }
 
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    // Utiliser le binaire Docker dans l'agent Jenkins
+                    docker.withRegistry('https://registry.example.com', 'dockerhub_id') {
+                        // Nom de l'image Docker
+                        def dockerImage = docker.image('mon-projet-spring:latest')
+
+                        // Authentifier auprès du registre Docker (peut être Docker Hub ou un autre registre)
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
         stage('Maven clean install') {
             steps {
 sh "mvn clean install -Dmaven.test.skip=true"            }
