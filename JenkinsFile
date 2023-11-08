@@ -1,4 +1,13 @@
 pipeline {
+environment { 
+
+        registry = "wassimbecheikh/skistation" 
+
+        registryCredential = 'dockerhub_id' 
+
+        dockerImage = '' 
+
+    }
     agent any
 
     stages {
