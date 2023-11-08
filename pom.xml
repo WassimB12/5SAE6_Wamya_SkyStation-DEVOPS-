@@ -72,7 +72,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>1.0</version>
 				<configuration>
 					<excludes>
 						<exclude>
@@ -82,6 +81,11 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+            			<groupId>org.codehaus.mojo</groupId>
+            			<artifactId>versions-maven-plugin</artifactId>
+            			<version>2.7</version> <!-- Use the latest version -->
+        		</plugin>
 		</plugins>
 	</build>
 
