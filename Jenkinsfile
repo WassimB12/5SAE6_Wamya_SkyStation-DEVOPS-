@@ -36,7 +36,7 @@ pipeline {
         stage('Nexus') {
             steps {
                 script {
-                    sh "mvn clean deploy -DskipTests -Drepository.url='http://192.168.33.10:8081/' -s settings.xml"
+                    sh "mvn clean deploy -DskipTests -Drepository.url='http://0.0.0.0:8081/' -s settings.xml"
                 }
             }
         }
