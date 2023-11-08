@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     sh "mvn clean deploy -DskipTests -Drepository.url='http://192.168.33.10:8081/' -s settings.xml"
-                    sh "${M2_HOME}/bin/mvn deploy:deploy-file \
+                    sh "/usr/share/maven/bin/mvn deploy:deploy-file \
                         -Durl=http://192.168.33.10:8081/repository/maven-releases/ \
                         -DrepositoryId=nexus \
                         -Dfile=target/gestion-station-ski-1.0.jar \
