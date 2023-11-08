@@ -33,6 +33,13 @@ pipeline {
                 }
             }
         }
+        stage('Nexus') {
+            steps {
+                script {
+                    sh "mvn clean deploy -DskipTests -Drepository.url='http://192.168.33.10:8081/' -s settings.xml"
+                }
+            }
+        }
 
         stage('Run Unit Tests with Mockito') {
             steps {
