@@ -7,7 +7,14 @@ pipeline {
                 sh "mvn clean package -DskipTests"
             }
         }
-
+    stage('Increment Version') {
+            steps {
+                script {
+                    // Increment the version using Maven Versions Plugin
+                    sh 'mvn versions:set -DnewVersion=$(date "+%Y%m%d%H%M%S") -DgenerateBackupPoms=false'
+                }
+            }
+        }
 
         stage('Docker cleanup') {
             steps {
