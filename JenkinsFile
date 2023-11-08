@@ -1,70 +1,7 @@
 pipeline {
-environment { 
-
-        registry = "wassimbecheikh/skistation" 
-
-        registryCredential = 'dockerhub_id' 
-
-        dockerImage = '' 
-
-    }
     agent any
 
     stages {
- stage('Cloning our Git') { 
-
-            steps { 
-
-                git 'https://github.com/WassimB12/5SAE6_Wamya_SkyStation.git' 
-
-            }
-
-        } 
-
-        stage('Building our image') { 
-
-            steps { 
-
-script { 
-
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
-
-             }
-
-            } 
-
-        }
-
-        stage('Deploy our image') { 
-
-            steps { 
-
-                script { 
-
-                    docker.withRegistry( '', registryCredential ) { 
-
-                        dockerImage.push() 
-
-                    }
-
-                } 
-
-            }
-
-        } 
-
-        stage('Cleaning up') { 
-
-        steps { 
-
-                sh "docker rmi $registry:$BUILD_NUMBER" 
-
-            }
-
-        } 
-    
-
-    
      
 
         stage('Maven clean install') {
@@ -89,4 +26,3 @@ stage('Run Unit Tests with Mockito') {
 
         // Add more stages as needed
     }}
-
