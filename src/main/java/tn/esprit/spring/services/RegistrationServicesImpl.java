@@ -39,16 +39,17 @@ public class RegistrationServicesImpl implements  IRegistrationServices{
 
     @Transactional
     @Override
-    public Registration addRegistrationAndAssignToSkierAndCourse(Registration registration, Long numSkieur, Long numCours) {
-        Skier skier = skierRepository.findById(numSkieur).orElse(null);
-        Course course = courseRepository.findById(numCours).orElse(null);
+    public Registration addRegistrationAndAssignToSkierAndCourse(Registration skierRegistration, Long skierNumber, Long courseNumber) {
+
+        Skier skier = skierRepository.findById(skierNumber).orElse(null);
+        Course course = courseRepository.findById(courseNumber).orElse(null);
 
         if (skier == null || course == null) {
             return null;
         }
 
-        if(registrationRepository.countDistinctByNumWeekAndSkier_NumSkierAndCourse_NumCourse(registration.getNumWeek(), skier.getNumSkier(), course.getNumCourse()) >=1){
-            log.info("Sorry, you're already register to this course of the week :" + registration.getNumWeek());
+        if(registrationRepository.countDistinctByNumWeekAndSkier_NumSkierAndCourse_NumCourse(skierRegistration.getNumWeek(), skier.getNumSkier(), course.getNumCourse()) >=1){
+            log.info("Sorry, you're already register to this course of the week :" + skierRegistration.getNumWeek());
             return null;
         }
 
@@ -58,14 +59,14 @@ public class RegistrationServicesImpl implements  IRegistrationServices{
         switch (course.getTypeCourse()) {
             case INDIVIDUAL:
                 log.info("add without tests");
-                return assignRegistration(registration, skier, course);
+                return assignRegistration(skierRegistration, skier, course);
 
             case COLLECTIVE_CHILDREN:
                 if (ageSkieur < 16) {
                     log.info("Ok CHILD !");
-                    if (registrationRepository.countByCourseAndNumWeek(course, registration.getNumWeek()) < 6) {
+                    if (registrationRepository.countByCourseAndNumWeek(course, skierRegistration.getNumWeek()) < 6) {
                         log.info("Course successfully added !");
-                        return assignRegistration(registration, skier, course);
+                        return assignRegistration(skierRegistration, skier, course);
                     } else {
                         log.info("Full Course ! Please choose another week to register !");
                         return null;
@@ -79,9 +80,9 @@ public class RegistrationServicesImpl implements  IRegistrationServices{
             default:
                 if (ageSkieur >= 16) {
                     log.info("Ok ADULT !");
-                    if (registrationRepository.countByCourseAndNumWeek(course, registration.getNumWeek()) < 6) {
+                    if (registrationRepository.countByCourseAndNumWeek(course, skierRegistration.getNumWeek()) < 6) {
                         log.info("Course successfully added !");
-                        return assignRegistration(registration, skier, course);
+                        return assignRegistration(skierRegistration, skier, course);
                     } else {
                         log.info("Full Course ! Please choose another week to register !");
                         return null;
@@ -89,7 +90,7 @@ public class RegistrationServicesImpl implements  IRegistrationServices{
                 }
                 log.info("Sorry, your age doesn't allow you to register for this course ! \n Try to Register to a Collective Child Course...");
         }
-        return registration;
+        return skierRegistration;
 
     }
     private Registration assignRegistration (Registration registration, Skier skier, Course course){

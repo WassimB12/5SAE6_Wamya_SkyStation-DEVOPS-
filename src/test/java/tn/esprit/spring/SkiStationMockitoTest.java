@@ -25,7 +25,7 @@ import static org.mockito.Mockito.verify;
 @Slf4j
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class SkiStationMockitoTest {
+class SkiStationMockitoTest {
     @Mock
     ISkierRepository skierRepo;
     //ou ISkierRepository skierRepo = Mockito.mock(ISkierRepository.class);
@@ -48,7 +48,7 @@ Subscription s=Subscription.builder().price(200F).endDate(LocalDate.parse("2025-
     };
 
     @Test
-    public void addSkierTest() {
+    void addSkierTest() {
         Mockito.when(skierRepo.save(Mockito.any(Skier.class))).then(invocation -> {
             Skier model = invocation.getArgument(0, Skier.class);
             model.setNumSkier(1L);
@@ -61,7 +61,7 @@ Subscription s=Subscription.builder().price(200F).endDate(LocalDate.parse("2025-
     }
 
     @Test
-    public void retreiveSkierTest() {
+   void retreiveSkierTest() {
         Mockito.when(skierRepo.findById(Mockito.anyLong())).thenReturn(Optional.of(m));
         Skier skier = skierService.retrieveSkier((long) 75);
         assertNotNull(skier);
@@ -71,7 +71,7 @@ Subscription s=Subscription.builder().price(200F).endDate(LocalDate.parse("2025-
     }
 
     @Test
-    public void retreiveAllSkierTest() {
+    void retreiveAllSkierTest() {
         Mockito.when(skierRepo.findAll()).thenReturn(list);
         List<Skier> skiers = skierService.retrieveAllSkiers();
         assertNotNull(skiers);
