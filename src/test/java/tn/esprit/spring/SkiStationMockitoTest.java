@@ -36,14 +36,14 @@ class SkiStationMockitoTest {
 Subscription s=Subscription.builder().price(200F).endDate(LocalDate.parse("2025-12-04"))
         .numSub(2L).typeSub(TypeSubscription.ANNUAL).startDate(LocalDate.parse("2024-12-04"))
         .build();
-    Skier m  = Skier.builder().numSkier(3L).dateOfBirth(LocalDate.ofEpochDay(1999-12-19))
-            .city("Tunis").firstName("wassim").lastName("becheikh").subscription(s).build();
+    Skier m  = Skier.builder().numSkier(3L).dateOfBirth(LocalDate.ofEpochDay(1994-12-19))
+            .city("Bardo").firstName("rim").lastName("mabrouki").subscription(s).build();
     List<Skier> list= new ArrayList<Skier>() {
         {
-            add(Skier.builder().numSkier(2L).dateOfBirth(LocalDate.ofEpochDay(1999-11-19))
-                    .city("Tunis").firstName("ahmed").lastName("Musa").build());
+            add(Skier.builder().numSkier(2L).dateOfBirth(LocalDate.ofEpochDay(1994-01-13))
+                    .city("Tunis").firstName("Nawres").lastName("Boutabba").build());
             add(Skier.builder().numSkier(75L).dateOfBirth(LocalDate.ofEpochDay(2000-10-18))
-                    .city("Tunis").firstName("sadio").lastName("Mane").build());
+                    .city("Africa").firstName("hello").lastName("world").build());
         }
     };
 
@@ -54,10 +54,10 @@ Subscription s=Subscription.builder().price(200F).endDate(LocalDate.parse("2025-
             model.setNumSkier(1L);
             return model;
         });
-        log.info("Avant ==> " + m.toString());
+        log.info("before " + m.toString());
         Skier skier = skierService.addSkier(m);
         assertSame(skier, m);
-        log.info("Après ==> " + m.toString());
+        log.info("after " + m.toString());
     }
 
     @Test
