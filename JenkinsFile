@@ -18,7 +18,7 @@ pipeline {
                     // Utiliser le binaire Docker dans l'agent Jenkins
                     docker.withRegistry('https://registry.example.com', 'dockerhub_id') {
                         // Nom de l'image Docker
-                        def dockerImage = docker.image('mon-projet-spring:latest')
+                        def dockerImage = docker.image('skistation:latest')
 
                         // Authentifier auprès du registre Docker (peut être Docker Hub ou un autre registre)
                         dockerImage.push()
