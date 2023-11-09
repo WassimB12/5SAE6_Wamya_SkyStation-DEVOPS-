@@ -9,7 +9,7 @@ services:
       MYSQL_DATABASE: 'stationski'
       MYSQL_USER: 'root'
       MYSQL_PASSWORD: ''
-      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_HOST: 'http://127.0.0.1'
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
