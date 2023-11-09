@@ -60,7 +60,14 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	<!-- Deploy to Nexus -->
+        <distributionManagement>
+                <repository>
+                        <id>deploymentRepo</id>
+                        <name>Nexus Repository</name>
+                        <url>http://192.168.33.10:8081/repository/maven-releases/</url>
+                </repository>
+        </distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
@@ -75,6 +82,11 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+            			<groupId>org.codehaus.mojo</groupId>
+            			<artifactId>versions-maven-plugin</artifactId>
+            			<version>2.7</version> <!-- Use the latest version -->
+        		</plugin>
 		</plugins>
 	</build>
 
