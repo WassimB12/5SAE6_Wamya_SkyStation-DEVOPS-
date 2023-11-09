@@ -1,16 +1,30 @@
-version: '3'
-services:
-  mysql:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_DATABASE:
-    ports:
-      - "3306:3306"
 
-  spring-app:
-    build: "https://github.com/WassimB12/5SAE6_Wamya_SkyStation"
+version: '2'
+services:
+  mysqldb:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=root
     ports:
-      - "8080:8080"
+      - 3306:3306
+    volumes:
+      - ./db-data:/var/lib/mysql
+  app-timesheet:
+    image: wassimbecheikh/skistation
+    restart: on-failure
+    environment:
+      SPRING_APPLICATION_JSON: '{"spring.datasource.url:"jdbc:mysql://localhost:3306/stationSki?createDatabaseIfNotExist=true",
+        "spring.datasource.username":"root",
+        "spring.datasource.password":null,
+        "spring.jpa.hibernate.ddl-auto":"update",
+        "spring.jpa.properties.hibernate.dialect":"org.hibernate.dialect.MySQL5InnoDBDialect"}'
+    ports:
+      - 8089:8089
     depends_on:
-      - mysql
+      - mysqldb
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./app-data:/app/data
