@@ -37,7 +37,7 @@ pipeline {
          stage('prometheus and grafana') {
                                     steps {
                                         script {
-                                          sh 'docker-compose up -d'
+                                          sh 'docker compose up -d'
                                         }
                                     }
                                 }
