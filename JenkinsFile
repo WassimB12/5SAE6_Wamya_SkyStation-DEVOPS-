@@ -9,15 +9,7 @@
 sh "mvn clean install -Dmaven.test.skip=true"            }
         }
 
-      stage('Nexus') {
-            steps {
-
-
-  sh 'mvn clean package deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=gestion-station-ski -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.33.10:8081/repository/maven-releases/ -Dfile=target/gestion-station-ski-1.0.jar'
-
-            }
-        }
-   
+     
 
 stage('Run Unit Tests with Mockito') {
             steps {
@@ -26,7 +18,15 @@ stage('Run Unit Tests with Mockito') {
             }
         }
  
+ stage('Nexus') {
+            steps {
 
+
+  sh 'mvn clean package deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=gestion-station-ski -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.33.10:8081/repository/maven-releases/ -Dfile=target/gestion-station-ski-1.0.jar'
+
+            }
+        }
+   
        
                      
   
@@ -46,6 +46,11 @@ stage('Run Unit Tests with Mockito') {
 
     }
 
+   post {
+       always {
+            cleanWs()
+       }
+    }
 
 
     }
