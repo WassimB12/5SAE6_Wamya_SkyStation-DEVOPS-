@@ -49,10 +49,10 @@ pipeline {
             }
         }
 
-       // stage('Run Unit Tests with Mockito') {
-         //   steps {
-           //     sh 'mvn test'
-            //}
-       // }
+        stage('Run Unit Tests with Mockito') {
+            steps {
+                sh 'mvn test'
+            }
+        }
     }
 }
