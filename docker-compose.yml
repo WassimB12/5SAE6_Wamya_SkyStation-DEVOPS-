@@ -23,7 +23,7 @@ services:
     volumes:
       - ./grafana:/etc/grafana/provisioning/datasources
    app-timesheet:
-     image: yassinemsadaa/skistation
+     image: yassinemsadaa/msadaayessine_wamya_skystation
      restart: on-failure
      environment:
        SPRING_APPLICATION_JSON: '{"spring.datasource.url:"jdbc:mysql://localhost:3306/stationSki?createDatabaseIfNotExist=true",
