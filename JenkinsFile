@@ -25,7 +25,7 @@ stage('Run Unit Tests with Mockito') {
     stage('Build Docker Image') {
                           steps {
                               script {
-                                sh 'docker build -t wassimbecheikh/skistation:1.02 .       '
+                                sh 'docker build -t wassimbecheikh/skistation .       '
                               }
                           }
                       }
@@ -33,12 +33,12 @@ stage('Run Unit Tests with Mockito') {
                      
   stage('Taging Docker Image') {
                                             steps {
-                                       sh ' docker tag skistation  wassimbecheikh/skistation:1.02       '
+                                       sh ' docker tag skistation  wassimbecheikh/skistation       '
                                                 }
     		  }
     	                      stage('Push Docker Image') {
                                             steps {
-                                       sh 'docker push wassimbecheikh/skistation:1.02   '
+                                       sh 'docker push wassimbecheikh/skistation  '
                                                 }
     		  }
 
