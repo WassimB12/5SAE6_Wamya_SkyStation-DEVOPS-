@@ -34,7 +34,6 @@ pipeline {
         stage('Docker Build & PUSH') {
             steps {
                 script{
-                 //app = docker.build("msadaayessine_wamya_skystation")
                     sh'docker build -t msadaayessine_wamya_skystation .'
                     sh 'docker push'
                 }
@@ -51,7 +50,6 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    // Assuming SonarQube is running on http://localhost:9000
                     withSonarQubeEnv(installationName: 'sonarqube') {
                         sh 'mvn sonar:sonar'
                     }
