@@ -26,7 +26,11 @@ pipeline {
                 sh "docker image prune -f"
             }
         }
-
+  stage('login dockerhub') {
+                                            steps {
+    				sh 'docker login -u yassine.msadaa@esprit.tn --password Yassine@1995'
+                                                }
+    		  }
         stage('Docker Build') {
             steps {
                 script{
