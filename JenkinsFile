@@ -17,7 +17,7 @@ stage('Run Unit Tests with Mockito') {
                 // Utilisez 'gradle test' pour les projets Gradle
             }
         }
-   stage('Run Spring && MySQL Containers') {
+   stage('Run docker-compose') {
                                     steps {
                                         script {
                                           sh 'docker-compose up -d'
