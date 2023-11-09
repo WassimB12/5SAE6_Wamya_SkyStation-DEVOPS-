@@ -7,10 +7,9 @@ services:
     restart: unless-stopped
     env_file: ./.env
     environment:
-      MYSQL_ROOT_PASSWORD: 'root'
-      MYSQL_DATABASE: 'root'
+      MYSQL_DATABASE: 'stationski'
       MYSQL_USER: 'root'
-      MYSQL_PASSWORD: 'root'
+      MYSQL_PASSWORD: ''
       MYSQL_ROOT_HOST: '%'
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
