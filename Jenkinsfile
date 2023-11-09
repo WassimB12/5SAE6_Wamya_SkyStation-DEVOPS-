@@ -31,10 +31,12 @@ pipeline {
     				sh 'docker login -u yassinemsadaa --password Yassine@1995'
                                                 }
     		  }
-        stage('Docker Build') {
+        stage('Docker Build & PUSH') {
             steps {
                 script{
-                 app = docker.build("msadaayessine_wamya_skystation")
+                 //app = docker.build("msadaayessine_wamya_skystation")
+                    sh'docker build -t msadaayessine_wamya_skystation .'
+                    sh 'docker push'
                 }
             }
         }
