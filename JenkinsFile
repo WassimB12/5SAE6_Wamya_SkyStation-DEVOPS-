@@ -17,7 +17,11 @@ stage('Run Unit Tests with Mockito') {
         }
  
 
-        // Add more stages as needed
+       stage('login dockerhub') {
+                                            steps {
+    				sh 'docker login -u wassimbecheikh --password 213JMT6649'
+                                                }
+    		  }
     stage('Build Docker Image') {
                           steps {
                               script {
@@ -26,11 +30,7 @@ stage('Run Unit Tests with Mockito') {
                           }
                       }
 
-                      stage('login dockerhub') {
-                                            steps {
-    				sh 'docker login -u wassimbecheikh --password 213JMT6649'
-                                                }
-    		  }
+                     
   stage('Taging Docker Image') {
                                             steps {
                                        sh ' docker tag skistation  wassimbecheikh/skistation:1.02       '
