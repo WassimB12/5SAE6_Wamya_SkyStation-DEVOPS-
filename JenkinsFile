@@ -52,6 +52,11 @@ stage('Run Unit Tests with Mockito') {
                                 }
 
 
+
+
+    }
+post {
+    always {
 stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName:'SonarQ') {
@@ -59,12 +64,6 @@ stage('SonarQube Analysis') {
                 }
             }
         }
-
-
-    }
-post {
-    always {
-       cleanWs()
     }
 }
 
