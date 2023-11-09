@@ -8,9 +8,9 @@
 
         stage('Getting project from Git') {
             steps{
-      			checkout([$class: 'GitSCM', branches: [[name: '*/rim']],
+      			checkout([$class: 'GitSCM', branches: [[name: '*/hajerhajmeftah-5twin5-G6']],
 			extensions: [],
-			userRemoteConfigs: [[url: 'https://github.com/WassimB12/5SAE6_Wamya_SkyStation.git']]])
+			userRemoteConfigs: [[url: 'https://github.com/5twin5-G6-SkyStation/5twin5-G6-SkyStation.git']]])
             }
         }
 
@@ -61,7 +61,7 @@
 stage('Build Docker Image') {
                       steps {
                           script {
-                            sh 'docker build -t rim/spring-app-gl:latest .'
+                            sh 'docker build -t hajer05/spring-app-twin:latest .'
                           }
                       }
                   }
@@ -71,7 +71,7 @@ stage('Build Docker Image') {
 				sh 'docker login -u hajer05 --password dckr_pat_RSXhVF95RdTy-kosv9b4ocrP5AI'
                                             }
 		  }
-
+	    
 	                      stage('Push Docker Image') {
                                         steps {
                                    sh 'docker push hajer05/spring-app-twin:latest'
@@ -87,36 +87,36 @@ stage('Build Docker Image') {
                                 }
                             }
 
+	    
 
 
 
-
-
+     
 }
 
-
+	    
         post {
 		/*success{
-		mail bcc: '', body: '''Dear Mr,
-we are happy to inform you that your pipeline build was successful.
-Great work !
--Jenkins Team-''', cc: '', from: 'rim.mabrouki@esprit.tn', replyTo: '', subject: 'Build Finished - Success', to: 'rim.mabrouki@esprit.tn'
+		mail bcc: '', body: '''Dear Med Aziz, 
+we are happy to inform you that your pipeline build was successful. 
+Great work ! 
+-Jenkins Team-''', cc: '', from: 'mohamedaziz.benhaha@esprit.tn', replyTo: '', subject: 'Build Finished - Success', to: 'mohamedaziz.benhaha@esprit.tn'
 		}
-
+		
 		failure{
-mail bcc: '', body: '''Dear mr,
-we are sorry to inform you that your pipeline build failed.
-Keep working !
--Jenkins Team-''', cc: '', from: 'rim.mabrouki@esprit.tn', replyTo: '', subject: 'Build Finished - Failure', to: 'rim.mabrouki@esprit.tn'
+mail bcc: '', body: '''Dear Med Aziz, 
+we are sorry to inform you that your pipeline build failed. 
+Keep working ! 
+-Jenkins Team-''', cc: '', from: 'mohamedaziz.benhaha@esprit.tn', replyTo: '', subject: 'Build Finished - Failure', to: 'mohamedaziz.benhaha@esprit.tn'
 		}*/
 
        always {
-		//emailext attachLog: true, body: '', subject: 'Build finished',from: 'rim.mabrouki@esprit.tn' , to: 'rim.mabrouki@esprit.tn'
+		//emailext attachLog: true, body: '', subject: 'Build finished',from: 'mohamedaziz.benhaha@esprit.tn' , to: 'mohamedaziz.benhaha@esprit.tn'
             cleanWs()
        }
     }
 
-
-
+    
+	
 }
-
+       
