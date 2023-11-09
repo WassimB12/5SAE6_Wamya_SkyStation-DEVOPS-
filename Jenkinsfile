@@ -27,10 +27,10 @@ pipeline {
             }
         }
   stage('login dockerhub') {
-                                            steps {
-    				sh 'docker login -u yassinemsadaa --password Yassine@1995'
-                                                }
-    		  }
+             steps {
+    			sh 'docker login -u yassinemsadaa --password Yassine@1995'
+             }
+        }
         stage('Docker Build & PUSH') {
             steps {
                 script{
