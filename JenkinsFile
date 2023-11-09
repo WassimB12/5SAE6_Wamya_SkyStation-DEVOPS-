@@ -58,10 +58,16 @@ stage('Run Unit Tests with Mockito') {
                                 }
 
 
-
+post {
+    always {
+        // This block will run regardless of the outcome of the previous stage
+        echo "This will run always, even if the previous stage failed."
+    }
+}
 
 
 
     }
+
 
     }
