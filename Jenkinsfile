@@ -34,8 +34,8 @@ pipeline {
         stage('Docker Build & PUSH') {
             steps {
                 script{
-                    sh'docker build -t msadaayessine_wamya_skystation .'
-                    //sh 'docker push'
+                    sh'docker build -t yassinemsadaa/msadaayessine_wamya_skystation .'
+                    sh 'docker push yassinemsadaa/msadaayessine_wamya_skystation'
                 }
             }
         }
