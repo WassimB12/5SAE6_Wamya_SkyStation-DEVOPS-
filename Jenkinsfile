@@ -34,6 +34,13 @@ pipeline {
                 }
             }
         }
+         stage('prometheus and grafana') {
+                                    steps {
+                                        script {
+                                          sh 'docker-compose up -d'
+                                        }
+                                    }
+                                }
 
         stage('SonarQube Analysis') {
             steps {
