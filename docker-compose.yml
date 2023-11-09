@@ -20,7 +20,6 @@ services:
       - mysqldb
     image:  rimmabrouki/spring-app:rimmabrouki
     restart: on-failure
-    env_file: ./.env
     ports:
       - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
     environment:
