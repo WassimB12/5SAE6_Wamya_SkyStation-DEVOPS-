@@ -1,15 +1,27 @@
 version: '2'
 services:
-  mysqldb:
-    image: mysql:5.7
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prom_data:/prometheus
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
     restart: unless-stopped
     environment:
-      - MYSQL_DATABASE=root
-      - MYSQL_ROOT_PASSWORD=root
-    ports:
-      - 3306:3306
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
     volumes:
-      - ./db-data:/var/lib/mysql
+      - ./grafana:/etc/grafana/provisioning/datasources
   app-skistation:
     image: yassinemsadaa/skistation
     restart: on-failure
@@ -27,3 +39,5 @@ services:
     tty: true
     volumes:
       - ./app-data:/app/data
+volumes:
+  prom_data:
