@@ -51,10 +51,6 @@ stage('Run Unit Tests with Mockito') {
                                     }
                                 }
 
-
-
-
-    }
 post {
     always {
 stage('SonarQube Analysis') {
@@ -66,6 +62,10 @@ stage('SonarQube Analysis') {
         }
     }
 }
+
+
+    }
+
 
 
     }
