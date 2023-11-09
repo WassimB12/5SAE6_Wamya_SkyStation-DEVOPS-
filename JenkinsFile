@@ -8,15 +8,17 @@
             steps {
 sh "mvn clean install -Dmaven.test.skip=true"            }
         }
-stage('SonarQube Analysis') {
+
+          stage('Nexus') {
             steps {
-                withSonarQubeEnv(installationName:'SonarQ') {
-                    sh 'mvn sonar:sonar' //  ./chmod +x mvnw  clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar
-                }
+
+
+  sh 'mvn clean package deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=gestion-station-ski -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=maven-releases -Durl=http://192.168.33.10:8081/repository/maven-releases/ -Dfile=target/gestion-station-ski-1.0.jar'
+
             }
-        
+        }
    
-}
+
 stage('Run Unit Tests with Mockito') {
             steps {
                 sh 'mvn test' // Exécutez les tests unitaires avec Mockito en utilisant Maven
