@@ -7,6 +7,11 @@ pipeline {
                 sh "mvn clean package -DskipTests"
             }
         }
+        stage('Run Unit Tests with Mockito') {
+            steps {
+                sh 'mvn test'
+            }
+        }
     stage('Increment Version') {
             steps {
                 script {
@@ -49,10 +54,6 @@ pipeline {
             }
         }
 
-        stage('Run Unit Tests with Mockito') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+        
     }
 }
