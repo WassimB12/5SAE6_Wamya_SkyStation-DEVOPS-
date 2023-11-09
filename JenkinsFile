@@ -1,4 +1,4 @@
-pipeline {
+ pipeline {
     agent any
 
     stages {
@@ -8,21 +8,6 @@ pipeline {
             steps {
 sh "mvn clean install -Dmaven.test.skip=true"            }
         }
-
-stage('Run Unit Tests with Mockito') {
-            steps {
-                sh 'mvn test' // Exécutez les tests unitaires avec Mockito en utilisant Maven
-                // Utilisez 'gradle test' pour les projets Gradle
-            }
-        }
-  stage('Nexus') {
-            steps {
-
-
-  sh 'mvn clean package deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=gestion-station-ski -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.33.10:8081/repository/maven-releases/ -Dfile=target/gestion-station-ski-1.0.jar'
-
-            }
-        }
 stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName:'SonarQ') {
@@ -30,5 +15,53 @@ stage('SonarQube Analysis') {
                 }
             }
         }
+stage('Run Unit Tests with Mockito') {
+            steps {
+                sh 'mvn test' // Exécutez les tests unitaires avec Mockito en utilisant Maven
+                // Utilisez 'gradle test' pour les projets Gradle
+            }
+        }
+ 
+
         // Add more stages as needed
-    }}
+    stage('Build Docker Image') {
+                          steps {
+                              script {
+                                sh 'docker build -t wassimbecheikh/skistation:1.02 .       '
+                              }
+                          }
+                      }
+
+                      stage('login dockerhub') {
+                                            steps {
+    				sh 'docker login -u wassimbecheikh --password 213JMT6649'
+                                                }
+    		  }
+  stage('Taging Docker Image') {
+                                            steps {
+                                       sh ' docker tag skistation  wassimbecheikh/skistation:1.02       '
+                                                }
+    		  }
+    	                      stage('Push Docker Image') {
+                                            steps {
+                                       sh 'docker push wassimbecheikh/skistation:1.02   '
+                                                }
+    		  }
+
+
+    		   stage('Run Spring && MySQL Containers') {
+                                    steps {
+                                        script {
+                                          sh 'docker-compose up -d'
+                                        }
+                                    }
+                                }
+
+
+
+
+
+
+    }
+
+    }
