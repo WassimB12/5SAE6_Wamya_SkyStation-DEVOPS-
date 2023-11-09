@@ -22,5 +22,20 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=grafana
     volumes:
       - ./grafana:/etc/grafana/provisioning/datasources
+   app-timesheet:
+     image: wassimbecheikh/skistation
+     restart: on-failure
+     environment:
+       SPRING_APPLICATION_JSON: '{"spring.datasource.url:"jdbc:mysql://localhost:3306/stationSki?createDatabaseIfNotExist=true",
+         "spring.datasource.username":"root",
+         "spring.datasource.password":null,
+         "spring.jpa.hibernate.ddl-auto":"update",
+         "spring.jpa.properties.hibernate.dialect":"org.hibernate.dialect.MySQL5InnoDBDialect"}'
+     ports:
+       - 8089:8089
+     stdin_open: true
+     tty: true
+     volumes:
+       - ./app-data:/app/data
 volumes:
   prom_data:
