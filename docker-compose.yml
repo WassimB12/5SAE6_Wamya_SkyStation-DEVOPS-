@@ -1,4 +1,4 @@
-version: "3.3"
+version: "1.0"
 
 services:
   mysqldb:
@@ -19,7 +19,7 @@ services:
   app:
     depends_on:
       - mysqldb
-    image:  hajer05/spring-app-twin:latest
+    image:  rimmabrouki/spring-app:rimmabrouki
     restart: on-failure
     env_file: ./.env
     ports:
@@ -30,14 +30,8 @@ services:
         "spring.datasource.username" : "$MYSQLDB_USER",
         "spring.datasource.password" : "$MYSQLDB_ROOT_PASSWORD",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-        "spring.jpa.hibernate.ddl-auto" : "update"
-      }'
-      #volumes:
-      # - type: bind
-      #  source: /root/.m2
-      #  target: ${PWD}/.m2
-      #volumes:
-      #- .m2:/root/.m2
+        "spring.jpa.hibernate.ddl-auto" : "update" }'
+
     stdin_open: true
     tty: true
     user: root
